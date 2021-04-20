@@ -32,13 +32,12 @@ class HomeTableViewController: UITableViewController {
         
         let myUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         let myParams = ["count":numberOfTweet]
-        TwitterAPICaller.client?.getDictionaryRequest(url: myUrl, parameters: myParams as [String : Any], success: { (tweets: NSDictionary) in
+        TwitterAPICaller.client?.getDictionariesRequest(url: myUrl, parameters: myParams as [String : Any], success: { (tweets: [NSDictionary]) in
             
             self.tweetArray.removeAll()
-//            for tweet in tweets {
-//                tweetArray.append(tweet)
-//            }
-            self.tweetArray.append(tweets)
+            for tweet in tweets {
+                self.tweetArray.append(tweet)
+            }
             self.tableView.reloadData()
             self.myRefreshControl.endRefreshing()
         }, failure: { (Error) in
@@ -51,13 +50,12 @@ class HomeTableViewController: UITableViewController {
         let myUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         numberOfTweet = numberOfTweet + 20
         let myParams = ["count":numberOfTweet]
-        TwitterAPICaller.client?.getDictionaryRequest(url: myUrl, parameters: myParams, success: { (tweets: NSDictionary) in
+        TwitterAPICaller.client?.getDictionariesRequest(url: myUrl, parameters: myParams as [String : Any], success: { (tweets: [NSDictionary]) in
             
             self.tweetArray.removeAll()
-//            for tweet in tweets {
-//                tweetArray.append(tweet)
-//            }
-            self.tweetArray.append(tweets)
+            for tweet in tweets {
+                self.tweetArray.append(tweet)
+            }
             self.tableView.reloadData()
         }, failure: { (Error) in
             print("Could not retrieve tweets! oh no!!")
@@ -79,7 +77,7 @@ class HomeTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
         let user = tweetArray[indexPath.row]["user"] as! NSDictionary
         cell.userNameLabel.text = user["name"] as? String
