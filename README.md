@@ -50,7 +50,7 @@ The following **bonus** features are implemented:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-
+<img src='./remainLogin.gif' width='' alt='Video Walkthrough' />
 <img src='./login.gif' width='' alt='Video Walkthrough' />
 <img src='./logout.gif' width='' alt='Video Walkthrough' />
 <img src='./refrash.gif' width='' alt='Video Walkthrough' />
